@@ -1,22 +1,21 @@
 import React from 'react';
-import { NavLink, Route, BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { AppProvider } from './app/AppContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <AppProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
+    </AppProvider>
   </React.StrictMode>
 );
 

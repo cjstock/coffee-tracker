@@ -1,15 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, { useContext }  from "react";
+import { AppContext } from "../app/AppContext";
 
-export default function Navbar({onSearchQueryChange, searchQuery}) {
+export default function Navbar() {
+
+    const appContext = useContext(AppContext);
 
     return (
-        <div class="navbar bg-base-100">
-            <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">Coffees</a>
+        <div className="navbar bg-base-100">
+            <div className="flex-1">
+                <a className="btn btn-ghost normal-case text-xl">Beans</a>
             </div>
-            <div class="flex-none gap-2">
-                <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered" value={searchQuery} onChange={event => onSearchQueryChange(event.target.value)} />
+            <div className="flex-none gap-2">
+                <div className="form-control">
+                    <input type="text" placeholder="Search" className="input input-bordered" value={appContext.searchQuery} onChange={event => appContext.handleSearchQueryChange(event.target.value)} />
                 </div>
             </div>
         </div>
