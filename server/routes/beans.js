@@ -61,7 +61,6 @@ recordRoutes.route("/beans/add").post(function (req, res) {
     if (err) {
       res.status(400).send("Error inserting bean!")
     } else {
-      console.log(`Added a new bean with id ${myobj.id}`)
       res.status(204).send();
     }
   });
@@ -90,7 +89,6 @@ recordRoutes.route("beans/update/:id").post(function (req, response) {
     if (err) {
       response.status(400).send(`Error updating info on bean with id ${myquery.id}`)
     } else {
-      console.log("1 document updated");
       response.status(204).send(`Updated bean with id ${myquery.id}`)
     }
   })
@@ -104,7 +102,6 @@ recordRoutes.route("beans/:id").delete((req, response) => {
     if (err) {
       response.status(400).send(`Error deleting bean with id ${myquery.id}`)
     }
-    console.log("1 document deleted");
     response.json(obj);
   });
 });
