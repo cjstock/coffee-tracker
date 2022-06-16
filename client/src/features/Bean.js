@@ -10,7 +10,7 @@ export default function Bean(props) {
 
 
     return <>
-        <button onClick={event => appContext.showEditBeanCard(bean._id)} className="card mx-auto w-72 h-52 bg-secondary shadow-xl text-left">
+        <button onClick={event => appContext.showEditBeanCard(bean._id)} className="card mx-auto w-80 h-52 bg-secondary shadow-xl text-left">
             <div className="card-body">
                 <h2 className="card-title">{capitalizeString(bean.country)} | {capitalizeString(bean.region)}</h2>
                 <div>
