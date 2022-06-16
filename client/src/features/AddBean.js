@@ -27,7 +27,7 @@ export default function AddBean() {
         { value: 'honey', text: 'Honey' },
         { value: 'anaerobic', text: 'Anaerobic' }
     ];
-    const { isAddBeanCardVisible } = useContext(AppContext);
+    const { isAddBeanCardVisible, showAddBeanCard } = useContext(AppContext);
 
     function handleSelectChange(event) {
         setBean({ ...bean, process: event.currentTarget.value })
@@ -42,7 +42,7 @@ export default function AddBean() {
 
     return <>
         <div className={`z-50 h-2/3 w-1/2 p-4 fixed bg-secondary ${isAddBeanCardVisible ? "visible" : "invisible"}`}>
-            <button className="btn btn-square btn-ghost bg-secondary">
+            <button onClick={showAddBeanCard} className="btn btn-square btn-ghost bg-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <form className="form-control p-2" onSubmit={event => handleFormSubmit(event)}>
