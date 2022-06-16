@@ -1,21 +1,14 @@
-import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import { AppContext } from "../../app/AppContext";
-import Bean  from "../bean/Bean";
-import NewBean from "../bean/NewBean";
-import fetchBeans from "./beansAPI";
+import { useQuery } from "react-query";
+import { AppContext } from "../app/AppContext";
+import Bean  from "./Bean";
+import NewBean from "./NewBean";
+import {fetchBeans} from "../common/API.js";
 
 export default function Beans() {
 
-    const [beans, setBeans] = useState([]);
     const appContext = useContext(AppContext);
-
-    useEffect(() => {
-        fetchBeans()
-        .then(res => {
-            setBeans(res)
-        })
-    }, [beans])
+    const { isLoading, isError, data, error } = useQuery('beans', fetchBeans)
 
     function filteredBeans(beans, query) {
         return beans.filter(bean => {
@@ -23,11 +16,19 @@ export default function Beans() {
         })
     }
 
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
+    }
+
     return <>
         <div className="mx-auto px-4 lg:max-w-5xl md:max-w-2xl">
             <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 place-content-center">
                 {
-                    beans && filteredBeans(beans, appContext.searchQuery).map(bean => {
+                    data && filteredBeans(data, appContext.searchQuery).map(bean => {
                         return <Bean value={bean} key={bean._id}/>
                     })
                 }

@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../app/AppContext";
-import editBean from "../edit-bean/editBean";
-import EditBean from "../edit-bean/editBean";
-import { addBean } from "./beanAPI";
+import { AppContext } from "../app/AppContext";
+import API from "../common/API.js";
 
 export default function Bean(props) {
     const bean = props.value;
@@ -11,8 +9,8 @@ export default function Bean(props) {
 
 
     return <>
-        <button onClick={event => appContext.showEditBean(event)} className="card mx-auto sm:max-w-sm md:max-w-2xl bg-secondary shadow-xl text-left">
-            <div id="info" className="card-body">
+        <button onClick={event => appContext.showEditBeanCard(bean._id)} className="card mx-auto w-72 h-52 bg-secondary shadow-xl text-left">
+            <div className="card-body">
                 <h2 className="card-title">{bean.country} | {bean.region}</h2>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 float-left" viewBox="0 0 20 20" fill="currentColor">

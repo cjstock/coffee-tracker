@@ -46,7 +46,6 @@ recordRoutes.route("/beans/:id").get(function (req, res) {
 recordRoutes.route("/beans/add").post(function (req, res) {
   let db_connect = dbo.getDb();
   let myobj = {
-    id: req.body.id,
     country: req.body.country,
     region: req.body.region,
     process: req.body.process,
@@ -55,7 +54,8 @@ recordRoutes.route("/beans/add").post(function (req, res) {
     roast: req.body.roast,
     cuppingNotes: req.body.cuppingNotes,
     brewMethods: req.body.brewMethods,
-    extraNotes: req.body.extraNotes
+    extraNotes: req.body.extraNotes,
+    buyLink: req.body.buyLink
   };
   db_connect.collection("beans").insertOne(myobj, function (err, result) {
     if (err) {
@@ -73,7 +73,6 @@ recordRoutes.route("beans/update/:id").post(function (req, response) {
   let myquery = { _id: req.body.id };
   let newvalues = {
     $inc: {
-      id: req.body.id,
       country: req.body.country,
       region: req.body.region,
       process: req.body.process,
@@ -82,7 +81,8 @@ recordRoutes.route("beans/update/:id").post(function (req, response) {
       roast: req.body.roast,
       cuppingNotes: req.body.cuppingNotes,
       brewMethods: req.body.brewMethods,
-      extraNotes: req.body.extraNotes
+      extraNotes: req.body.extraNotes,
+      buyLink: req.body.buyLink
     },
   }
 

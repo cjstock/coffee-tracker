@@ -5,10 +5,18 @@ const AppContext = createContext();
 function AppProvider(props) {
 
     const [searchQuery, setSearchQuery] = useState("");
-    const [editBean, setEditBean] = useState(false);
+    const [isEditBeanVisible, setIsEditBeanVisible] = useState(false);
+    const [isAddBeanCardVisible, setIsAddBeanCardVisible] = useState(false);
+    const [selectedBean, setSelectedBean] = useState("");
 
-    const showEditBean = (event) => {
-        setEditBean(prev => prev = !editBean);
+
+    function showEditBeanCard(beanId) {
+        setSelectedBean(beanId);
+        setIsEditBeanVisible(prev => prev = !isEditBeanVisible);
+    }
+
+    function showAddBeanCard() {
+        setIsAddBeanCardVisible(prev => prev = !isAddBeanCardVisible);
     }
 
     function handleSearchQueryChange(string) {
@@ -17,8 +25,11 @@ function AppProvider(props) {
 
     const value = {
         searchQuery,
-        editBean,
-        showEditBean,
+        isEditBeanVisible,
+        selectedBean,
+        isAddBeanCardVisible,
+        showAddBeanCard,
+        showEditBeanCard,
         handleSearchQueryChange
     }
 
